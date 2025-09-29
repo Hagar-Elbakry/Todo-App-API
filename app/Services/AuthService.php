@@ -35,4 +35,8 @@ class AuthService
             'token' => $token
         ];
     }
+
+    public function userProfile() {
+        return Auth::user();
+    }
 }

@@ -13,6 +13,7 @@ abstract class Controller
     public const INVALID_CREDENTIALS_MESSAGE = 'Invalid credentials. Please check your email and password.';
 
     public const EXCEPTION_MESSAGE = 'An unexpected error occurred. Please try again later.';
+    public const UNFOUND_USER_MESSAGE = 'User not found.';
 
     public const SUCCESS_CODE = 200;
     public const ERROR_CODE = 500;

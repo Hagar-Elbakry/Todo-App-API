@@ -12,5 +12,9 @@ Route::controller(AuthController::class)->group(function () {
     Route::prefix('auth')->as('auth.')->group(function () {
         Route::post('/register', 'register')->name('register');
         Route::post('/login', 'login')->name('login');
+
+        Route::middleware('auth:api')->group(function () {
+            Route::get('/profile', 'profile')->name('profile');
+        });
     });
 });

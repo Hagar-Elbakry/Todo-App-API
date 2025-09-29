@@ -8,6 +8,7 @@ use App\Http\Requests\AuthLogin;
 use App\Http\Requests\AuthRegister;
 use App\Services\AuthService;
 use Illuminate\Support\Facades\Log;
+use Exception;
 
 class AuthController extends Controller
 {
@@ -22,7 +23,7 @@ class AuthController extends Controller
                return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::SUCCESS_MESSAGE, data: $response, code: self::SUCCESS_CODE);
            }
            return ApiResponse::error(status: self::ERROR_STATUS, message: self::REGISTER_ERROR_MESSAGE, code: self::ERROR_CODE);
-        }catch (\Exception $e) {
+        }catch (Exception $e) {
             Log::error('Exception Occurred while registering user: '.$e->getMessage());
             return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE, code: self::VALIDATION_ERROR_CODE);
         }
@@ -35,7 +36,7 @@ class AuthController extends Controller
                     return ApiResponse::error(status: self::ERROR_STATUS, message: self::INVALID_CREDENTIALS_MESSAGE, code: self::ERROR_CODE);
                 }
                     return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::SUCCESS_MESSAGE, data: $loginResponse, code: self::SUCCESS_CODE);
-            } catch(\Exception $e) {
+            } catch(Exception $e) {
                 Log::error('Exception Occurred while logging in user: '.$e->getMessage());
                 return ApiResponse::error(status: self::ERROR_STATUS, message: self::ERROR_MESSAGE, code: self::VALIDATION_ERROR_CODE);
             }
@@ -51,6 +52,19 @@ class AuthController extends Controller
        } catch(\Exception $e) {
            Log::error('Exception Occurred while getting user profile: '.$e->getMessage());
               return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE, code: self::VALIDATION_ERROR_CODE);
+       }
     }
+    public function logout() {
+        try {
+            $authUser = $this->authService->userLogout();
+            if(!$authUser) {
+                return ApiResponse::error(status: self::ERROR_STATUS, message: self::LOGOUT_ERROR_MESSAGE, code: self::ERROR_CODE);
+            }
+               return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::LOgoUT_SUCCESS_MESSAGE, code: self::SUCCESS_CODE);
+        } catch (Exception $e) {
+            Log::error('Exception Occurred while logging out: '.$e->getMessage());
+                return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE, code: self::VALIDATION_ERROR_CODE);
+        }
     }
+
 }

@@ -14,6 +14,8 @@ abstract class Controller
 
     public const EXCEPTION_MESSAGE = 'An unexpected error occurred. Please try again later.';
     public const UNFOUND_USER_MESSAGE = 'User not found.';
+    public const LOGOUT_ERROR_MESSAGE = 'Logout failed. Please try again.';
+    public const LOgoUT_SUCCESS_MESSAGE = 'User logged out successfully';
 
     public const SUCCESS_CODE = 200;
     public const ERROR_CODE = 500;

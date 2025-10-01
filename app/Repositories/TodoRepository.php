@@ -14,6 +14,9 @@ class TodoRepository
         //
     }
 
+    public function getAllTodos($userId) {
+        return Todo::where('user_id', $userId)->paginate(10);
+    }
     public function storeTodo($request) {
         return Todo::create($request);
     }

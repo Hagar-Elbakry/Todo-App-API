@@ -17,7 +17,13 @@ class TodoController extends Controller
         $this->todoService = $todoService;
     }
     public function index() {
-
+        try{
+            $todos = $this->todoService->getAllTodos();
+            return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::SUCCESS_MESSAGE, data: $todos, code: self::SUCCESS_CODE);
+        }catch(\Exception $e){
+            Log::error('Error While fetching todos: '.$e->getMessage());
+            return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE, code: self::VALIDATION_ERROR_CODE);
+        }
     }
 
     public function store(TodoRequest $request) {

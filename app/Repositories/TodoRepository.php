@@ -20,4 +20,8 @@ class TodoRepository
     public function storeTodo($request) {
         return Todo::create($request);
     }
+
+    public function getTodo($todo, $userId) {
+        return  $todo->where('user_id', $userId)->first();
+    }
 }

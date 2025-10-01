@@ -28,4 +28,9 @@ class TodoService
         $request['user_id'] = $authUser->id;
         return $this->todoRepository->storeTodo($request);
     }
+
+    public function getTodo($todo) {
+        $authUser = $this->authService->getAuthUser();
+        return $this->todoRepository->getTodo($todo, $authUser->id);
+    }
 }

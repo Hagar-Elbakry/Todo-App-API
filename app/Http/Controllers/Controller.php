@@ -18,6 +18,7 @@ abstract class Controller
     public const LOgoUT_SUCCESS_MESSAGE = 'User logged out successfully';
     public const TODO_CREATION_SUCCESS_MESSAGE = 'Todo created successfully';
     public const TODO_CREATION_ERROR_MESSAGE = 'Todo creation failed. Please try again.';
+    public const TODO_NOT_FOUND_MESSAGE = 'Todo not found.';
 
     public const SUCCESS_CODE = 200;
     public const ERROR_CODE = 500;

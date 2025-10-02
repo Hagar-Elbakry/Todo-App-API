@@ -19,6 +19,11 @@ abstract class Controller
     public const CREATION_SUCCESS_MESSAGE = 'created successfully';
     public const CREATION_ERROR_MESSAGE = 'creation failed. Please try again.';
 
+    public const UPDATE_SUCCESS_MESSAGE = 'updated successfully';
+    public const UPDATE_ERROR_MESSAGE = 'update failed. Please try again.';
+    public const DELETION_SUCCESS_MESSAGE = 'deleted successfully';
+    public const DELETION_ERROR_MESSAGE = 'deletion failed. Please try again.';
+
     public const SUCCESS_CODE = 200;
     public const ERROR_CODE = 500;
     public  const VALIDATION_ERROR_CODE = 422;

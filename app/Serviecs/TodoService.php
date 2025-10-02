@@ -41,4 +41,12 @@ class TodoService
        }
        return  $this->todoRepository->updateTodo($request, $todo);
     }
+
+    public function deleteTodo($todo) {
+        $authUser = $this->authService->getAuthUser();
+       if($todo->user_id !== $authUser->id) {
+            return false;
+       }
+       return  $this->todoRepository->deleteTodo($todo);
+    }
 }

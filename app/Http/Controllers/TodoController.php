@@ -64,11 +64,25 @@ class TodoController extends Controller
         try{
             $todo = $this->todoService->updateTodo($request, $todo);
             if($todo) {
-                return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::SUCCESS_MESSAGE, data: $todo, code: self::SUCCESS_CODE);
+                return ApiResponse::success(status: self::SUCCESS_STATUS, message: 'Todo ' .  self::UPDATE_SUCCESS_MESSAGE, data: $todo, code: self::SUCCESS_CODE);
             }
-            return ApiResponse::error(status: self::ERROR_STATUS, message: 'Todo ' . self::NOT_FOUND_MESSAGE, code: self::ERROR_CODE);
+            return ApiResponse::error(status: self::ERROR_STATUS, message: 'Todo ' . self::UPDATE_ERROR_MESSAGE, code: self::ERROR_CODE);
         }catch (\Exception $e){
             Log::error('Error While updating todo: '.$e->getMessage());
+            return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE, code: self::VALIDATION_ERROR_CODE);
+        }
+    }
+
+    public function destroy(Todo $todo)
+    {
+        try {
+           $todo = $this->todoService->deleteTodo($todo);
+           if($todo) {
+                return ApiResponse::success(status: self::SUCCESS_STATUS, message: 'Todo ' . self::DELETION_SUCCESS_MESSAGE, code: self::SUCCESS_CODE);
+           }
+           return ApiResponse::error(status: self::ERROR_STATUS, message: 'Todo ' . self::DELETION_ERROR_MESSAGE, code: self::ERROR_CODE);
+        } catch (\Exception $e) {
+            Log::error('Error While deleting todo: '.$e->getMessage());
             return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE, code: self::VALIDATION_ERROR_CODE);
         }
     }

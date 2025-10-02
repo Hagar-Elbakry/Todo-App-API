@@ -29,4 +29,8 @@ class TodoRepository
         $todo->update($request->all());
         return $todo;
     }
+
+    public function deleteTodo($todo) {
+        return $todo->delete();
+    }
 }

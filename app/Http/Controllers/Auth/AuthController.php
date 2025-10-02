@@ -46,7 +46,7 @@ class AuthController extends Controller
        try {
            $authUser =  $this->authService->userProfile();
            if(!$authUser) {
-               return ApiResponse::error(status: self::ERROR_STATUS, message: self::UNFOUND_USER_MESSAGE, code: self::ERROR_CODE);
+               return ApiResponse::error(status: self::ERROR_STATUS, message: 'User ' .  self::NOT_FOUND_MESSAGE, code: self::ERROR_CODE);
            }
               return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::SUCCESS_MESSAGE, data: $authUser, code: self::SUCCESS_CODE);
        } catch(\Exception $e) {

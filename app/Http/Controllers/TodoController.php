@@ -23,12 +23,10 @@ class TodoController extends Controller
     {
         try {
             $todos = $this->todoService->getAllTodos();
-            return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::SUCCESS_MESSAGE, data: $todos,
-                code: self::SUCCESS_CODE);
+            return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::SUCCESS_MESSAGE, data: $todos, code: self::SUCCESS_CODE);
         } catch (\Exception $e) {
             Log::error('Error While fetching todos: '.$e->getMessage());
-            return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE,
-                code: self::VALIDATION_ERROR_CODE);
+            return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE, code: self::VALIDATION_ERROR_CODE);
         }
     }
 
@@ -37,15 +35,12 @@ class TodoController extends Controller
         try {
             $todo = $this->todoService->storeTodo($request);
             if ($todo) {
-                return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::TODO_CREATION_SUCCESS_MESSAGE,
-                    data: $todo, code: self::CREATED_CODE);
+                return ApiResponse::success(status: self::SUCCESS_STATUS, message: 'Todo ' .  self::CREATION_SUCCESS_MESSAGE, data: $todo, code: self::CREATED_CODE);
             }
-            return ApiResponse::error(status: self::ERROR_STATUS, message: self::TODO_CREATION_ERROR_MESSAGE,
-                code: self::ERROR_CODE);
+            return ApiResponse::error(status: self::ERROR_STATUS, message: 'Todo ' .  self::CREATION_ERROR_MESSAGE, code: self::ERROR_CODE);
         } catch (\Exception $e) {
             Log::error('Error While creating todo: '.$e->getMessage());
-            return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE,
-                code: self::VALIDATION_ERROR_CODE);
+            return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE, code: self::VALIDATION_ERROR_CODE);
         }
     }
 
@@ -56,7 +51,7 @@ class TodoController extends Controller
             if ($todo) {
                 return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::SUCCESS_MESSAGE, data: $todo, code: self::SUCCESS_CODE);
             }
-            return ApiResponse::error(status: self::ERROR_STATUS, message: self::TODO_NOT_FOUND_MESSAGE, code: self::ERROR_CODE);
+            return ApiResponse::error(status: self::ERROR_STATUS, message: 'Todo ' . self::NOT_FOUND_MESSAGE, code: self::ERROR_CODE);
         } catch (\Exception $e) {
             Log::error('Error While fetching todo: '.$e->getMessage());
             return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE, code: self::VALIDATION_ERROR_CODE);
@@ -71,7 +66,7 @@ class TodoController extends Controller
             if($todo) {
                 return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::SUCCESS_MESSAGE, data: $todo, code: self::SUCCESS_CODE);
             }
-            return ApiResponse::error(status: self::ERROR_STATUS, message: self::TODO_NOT_FOUND_MESSAGE, code: self::ERROR_CODE);
+            return ApiResponse::error(status: self::ERROR_STATUS, message: 'Todo ' . self::NOT_FOUND_MESSAGE, code: self::ERROR_CODE);
         }catch (\Exception $e){
             Log::error('Error While updating todo: '.$e->getMessage());
             return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE, code: self::VALIDATION_ERROR_CODE);

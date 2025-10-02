@@ -24,4 +24,9 @@ class TodoRepository
     public function getTodo($todo, $userId) {
         return  $todo->where('user_id', $userId)->first();
     }
+
+    public function updateTodo($request, $todo) {
+        $todo->update($request->all());
+        return $todo;
+    }
 }

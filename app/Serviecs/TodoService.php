@@ -33,4 +33,12 @@ class TodoService
         $authUser = $this->authService->getAuthUser();
         return $this->todoRepository->getTodo($todo, $authUser->id);
     }
+
+    public function updateTodo($request, $todo) {
+        $authUser = $this->authService->getAuthUser();
+       if($todo->user_id !== $authUser->id) {
+            return false;
+       }
+       return  $this->todoRepository->updateTodo($request, $todo);
+    }
 }

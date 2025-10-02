@@ -60,7 +60,7 @@ class AuthController extends Controller
             if(!$authUser) {
                 return ApiResponse::error(status: self::ERROR_STATUS, message: self::LOGOUT_ERROR_MESSAGE, code: self::ERROR_CODE);
             }
-               return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::LOgoUT_SUCCESS_MESSAGE, code: self::SUCCESS_CODE);
+               return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::LOGOUT_SUCCESS_MESSAGE, code: self::SUCCESS_CODE);
         } catch (Exception $e) {
             Log::error('Exception Occurred while logging out: '.$e->getMessage());
                 return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE, code: self::VALIDATION_ERROR_CODE);

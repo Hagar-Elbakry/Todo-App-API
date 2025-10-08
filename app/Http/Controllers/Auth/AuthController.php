@@ -6,6 +6,7 @@ use App\Helper\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthLogin;
 use App\Http\Requests\AuthRegister;
+use App\Http\Requests\RefreshTokenRequest;
 use App\Services\AuthService;
 use Illuminate\Support\Facades\Log;
 use Exception;
@@ -67,4 +68,17 @@ class AuthController extends Controller
         }
     }
 
+    public function refreshToken(RefreshTokenRequest $request) {
+        try{
+            $authResponse = $this->authService->refreshToken($request);
+            if(!$authResponse) {
+                return ApiResponse::error(status: self::ERROR_STATUS, message: self::INVALID_CREDENTIALS_MESSAGE, code: self::ERROR_CODE);
+            } else {
+                return ApiResponse::success(status: self::SUCCESS_STATUS, message: self::SUCCESS_MESSAGE, data: $authResponse, code: self::SUCCESS_CODE);
+            }
+        }catch (Exception $e) {
+            Log::error('Exception Occurred while refreshing refresh token: '.$e->getMessage());
+            return ApiResponse::error(status: self::ERROR_STATUS, message: self::EXCEPTION_MESSAGE, code: self::VALIDATION_ERROR_CODE);
+        }
+    }
 }

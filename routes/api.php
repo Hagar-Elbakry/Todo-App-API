@@ -13,6 +13,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::prefix('auth')->as('auth.')->group(function () {
         Route::post('/register', 'register')->name('register');
         Route::post('/login', 'login')->name('login');
+        Route::post('/refresh-token', 'refreshToken')->name('refresh-token');
 
         Route::middleware('auth:api')->group(function () {
             Route::get('/profile', 'profile')->name('profile');

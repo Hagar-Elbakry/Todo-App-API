@@ -27,7 +27,7 @@ A Laravel-based RESTful API for managing todo tasks with user authentication (OA
 ### 1. Clone the repository
 
 ```sh
-git clone https://github.com/your-username/todo-app-api.git
+git clone https://github.com/Hagar-Elbakry/todo-app-api.git
 cd todo-app-api
 ```
 

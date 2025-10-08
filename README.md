@@ -96,7 +96,8 @@ Start the application using a proper web server (such as Apache, Nginx, or Larav
 
 - `POST /api/auth/register` — Register a new user
 - `POST /api/auth/login` — Login and receive access token and refresh token
-- `POST /api/auth/refresh-token` — Refresh Token 
+- `POST /api/auth/refresh-token` — Refresh Token
+- `POST /api/auth/logout` — Logout user
 
 ### Todos
 
@@ -106,7 +107,7 @@ Start the application using a proper web server (such as Apache, Nginx, or Larav
 - `PUT /api/auth/todos/{id}` — Update a todo
 - `DELETE /api/auth/todos/{id}` — Delete a todo
 
-All todo endpoints require a valid Bearer token.
+All todo endpoints, refresh token and logout endpoints require a valid Bearer token.
 
 ---
 
